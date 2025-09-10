@@ -1,3 +1,37 @@
-<div class="container">
-  <h1>{{ title }}</h1>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-icon">S</div>
+      <div class="brand-name">Social Automator</div>
+    </div>
+    <nav class="nav">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <span class="icon">📊</span> Dashboard
+      </a>
+      <a routerLink="/accounts" routerLinkActive="active"><span class="icon">🔗</span> Accounts</a>
+      <a routerLink="/create" routerLinkActive="active"><span class="icon">✍️</span> Create / Schedule</a>
+      <a routerLink="/calendar" routerLinkActive="active"><span class="icon">📅</span> Calendar</a>
+      <a routerLink="/analytics" routerLinkActive="active"><span class="icon">📈</span> Analytics</a>
+      <a routerLink="/posts" routerLinkActive="active"><span class="icon">🗂️</span> Posts</a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="tip">
+        <div class="tip-title">Pro tip</div>
+        <div class="tip-body">Use AI tools in Create to draft captions and images faster.</div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="header">
+      <div class="header-title">{{ title }}</div>
+      <div class="header-actions">
+        <button class="btn btn-primary" routerLink="/create">New Post</button>
+      </div>
+    </header>
+
+    <section class="content">
+      <router-outlet></router-outlet>
+    </section>
+  </main>
 </div>

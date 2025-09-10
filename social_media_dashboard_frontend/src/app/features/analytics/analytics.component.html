@@ -1,0 +1,41 @@
+<div class="grid" style="grid-template-columns: repeat(12,1fr); gap: 16px;">
+  <div class="card" style="grid-column: span 4;">
+    <div class="section-title">Reach</div>
+    <div class="metric">
+      <div class="value">{{ analytics().totalImpressions | number }}</div>
+      <div class="hint">Total Impressions</div>
+    </div>
+  </div>
+  <div class="card" style="grid-column: span 4;">
+    <div class="section-title">Engagement</div>
+    <div class="metric">
+      <div class="value">{{ analytics().totalEngagements | number }}</div>
+      <div class="hint">Likes, Comments, Shares</div>
+    </div>
+  </div>
+  <div class="card" style="grid-column: span 4;">
+    <div class="section-title">Top Platform</div>
+    <div class="metric">
+      <div class="value">{{ analytics().topPlatform | titlecase }}</div>
+      <div class="hint">This Month</div>
+    </div>
+  </div>
+
+  <div class="card" style="grid-column: span 12;">
+    <div class="section-title">Recent Post Performance</div>
+    <div class="table">
+      <div class="row head">
+        <div>Caption</div><div>Platforms</div><div>Status</div><div>Impr.</div><div>Likes</div><div>Comments</div><div>Shares</div>
+      </div>
+      <div class="row" *ngFor="let p of posts()">
+        <div class="cell cap">{{ p.caption }}</div>
+        <div class="cell">{{ p.platforms.join(', ') }}</div>
+        <div class="cell"><span class="chip">{{ p.status | titlecase }}</span></div>
+        <div class="cell">{{ p.performance?.impressions ?? '—' }}</div>
+        <div class="cell">{{ p.performance?.likes ?? '—' }}</div>
+        <div class="cell">{{ p.performance?.comments ?? '—' }}</div>
+        <div class="cell">{{ p.performance?.shares ?? '—' }}</div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+.form { display: flex; align-items: end; gap: 10px; flex-wrap: wrap; }
+label { display: flex; flex-direction: column; gap: 6px; }
+input, select { padding: 10px 12px; border-radius: 10px; border: 1px solid var(--border); min-width: 220px; }
+.list { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+.item { display: flex; align-items: center; justify-content: space-between; border: 1px solid var(--border); border-radius: 12px; padding: 10px; }
+.caption { font-weight: 500; color: var(--secondary); }
+.meta { font-size: 12px; }

@@ -1,0 +1,30 @@
+<div class="card">
+  <div class="section-title">All Posts</div>
+  <div class="list">
+    <div class="item" *ngFor="let p of posts()">
+      <div class="media" *ngIf="p.imageUrl"><img [src]="p.imageUrl" alt="img"></div>
+      <div class="body">
+        <div class="row">
+          <div class="left">
+            <div class="caption" *ngIf="!editing[p.id]">{{ p.caption }}</div>
+            <textarea *ngIf="editing[p.id]" [(ngModel)]="p.caption"></textarea>
+            <div class="meta">
+              <span class="chip">{{ p.platforms.join(', ') }}</span>
+              <span class="muted">{{ p.scheduledAt | date:'medium' }}</span>
+              <span class="chip">{{ p.status | titlecase }}</span>
+            </div>
+          </div>
+          <div class="right actions">
+            <button class="btn" (click)="toggleEdit(p)">{{ editing[p.id] ? 'Cancel' : 'Edit' }}</button>
+            <button class="btn btn-primary" *ngIf="editing[p.id]" (click)="save(p)">Save</button>
+            <button class="btn" (click)="markPosted(p.id)">Mark Posted</button>
+            <button class="btn" (click)="delete(p.id)">Delete</button>
+          </div>
+        </div>
+        <div class="img-url" *ngIf="editing[p.id]">
+          <input type="text" [(ngModel)]="p.imageUrl" placeholder="Image URL" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+<div class="grid" style="grid-template-columns: 2fr 1fr; gap: 16px;">
+  <div class="card">
+    <div class="section-title">Create post</div>
+    <div class="form">
+      <label>
+        <span>AI Prompt</span>
+        <textarea [(ngModel)]="prompt" rows="3" placeholder="Describe your post idea..."></textarea>
+      </label>
+      <div class="row">
+        <button class="btn" [disabled]="isGenerating" (click)="generate()">
+          {{ isGenerating ? 'Generating…' : 'Generate with AI' }}
+        </button>
+      </div>
+
+      <label>
+        <span>Caption</span>
+        <textarea [(ngModel)]="caption" rows="4" placeholder="Write a great caption..."></textarea>
+      </label>
+
+      <label>
+        <span>Image</span>
+        <div class="image-row">
+          <input [(ngModel)]="imageUrl" type="text" placeholder="https://image.url" />
+          <button class="btn" (click)="generate()">AI Image</button>
+        </div>
+        <div *ngIf="imageUrl" class="preview">
+          <img [src]="imageUrl" alt="preview" />
+        </div>
+      </label>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">Schedule</div>
+    <div class="form">
+      <label>
+        <span>Date & Time</span>
+        <input type="datetime-local" [(ngModel)]="scheduleDate" />
+      </label>
+
+      <div class="section-title" style="margin-top: 8px;">Platforms</div>
+      <div class="platforms">
+        <label class="plat" *ngFor="let p of platforms">
+          <input type="checkbox" [(ngModel)]="selected[getSelectedBindingKey(p.id)]" />
+          <span class="chip">{{ p.icon }} {{ p.label }}</span>
+        </label>
+      </div>
+
+      <button class="btn btn-primary" (click)="schedule()">Schedule Post</button>
+    </div>
+  </div>
+</div>
+
+<ui-modal [open]="confirmOpen" (close)="confirmOpen=false" title="Post scheduled">
+  <p>Your post has been scheduled successfully.</p>
+  <div style="height: 8px;"></div>
+  <button class="btn btn-primary" (click)="confirmOpen=false">Close</button>
+</ui-modal>

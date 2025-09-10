@@ -1,0 +1,24 @@
+<div class="card">
+  <div class="cal-header">
+    <button class="btn" (click)="prev()">‹</button>
+    <div class="title">
+      {{ current() | date:'MMMM y' }}
+    </div>
+    <button class="btn" (click)="next()">›</button>
+  </div>
+
+  <div class="weekdays">
+    <div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div><div>Sun</div>
+  </div>
+
+  <div class="grid">
+    <div class="cell" *ngFor="let d of grid()" [class.muted]="!d.inMonth">
+      <div class="date">{{ d.date | date:'d' }}</div>
+      <div class="posts">
+        <div class="pill" *ngFor="let p of d.posts">
+          {{ p.platforms.join(', ') }} — {{ p.caption | slice:0:32}}{{p.caption.length>32?'…':''}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,61 @@
+<div class="grid" style="grid-template-columns: repeat(12, 1fr); gap: 16px;">
+  <div class="card" style="grid-column: span 3;">
+    <div class="metric-title">Impressions</div>
+    <div class="metric-value">{{ analytics().totalImpressions | number }}</div>
+    <div class="metric-foot chip">Top: {{ analytics().topPlatform | titlecase }}</div>
+  </div>
+  <div class="card" style="grid-column: span 3;">
+    <div class="metric-title">Engagements</div>
+    <div class="metric-value">{{ analytics().totalEngagements | number }}</div>
+    <div class="metric-foot chip">This month: {{ analytics().postsThisMonth }} posts</div>
+  </div>
+  <div class="card" style="grid-column: span 3;">
+    <div class="metric-title">Followers</div>
+    <div class="metric-value">
+      {{ analytics().followers.instagram + analytics().followers.facebook + analytics().followers.youtube + analytics().followers.twitter | number }}
+    </div>
+    <div class="metric-foot chip">IG: {{ analytics().followers.instagram | number }}</div>
+  </div>
+  <div class="card" style="grid-column: span 3;">
+    <div class="metric-title">Quick Actions</div>
+    <div class="quick-actions">
+      <a class="qa btn btn-primary" routerLink="/create">New Post</a>
+      <a class="qa btn" routerLink="/calendar">View Calendar</a>
+      <a class="qa btn" routerLink="/analytics">Open Analytics</a>
+      <a class="qa btn" routerLink="/accounts">Manage Accounts</a>
+    </div>
+  </div>
+
+  <div class="card" style="grid-column: span 6;">
+    <div class="section-title">Upcoming Schedule</div>
+    <div *ngIf="upcoming().length === 0" class="muted">No upcoming scheduled posts. Create one!</div>
+    <div class="list">
+      <div class="item" *ngFor="let p of upcoming()">
+        <div class="left">
+          <div class="caption">{{ p.caption }}</div>
+          <div class="meta">
+            <span class="chip">{{ p.platforms.join(', ') }}</span>
+            <span class="muted">{{ p.scheduledAt | date:'medium' }}</span>
+          </div>
+        </div>
+        <a routerLink="/posts" class="muted">Manage</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="grid-column: span 6;">
+    <div class="section-title">Recent Activity</div>
+    <div class="list">
+      <div class="item" *ngFor="let p of recent()">
+        <div class="left">
+          <div class="caption">{{ p.caption }}</div>
+          <div class="meta">
+            <span class="chip" [style.background]="'rgba(25,118,210,0.07)'" [style.border-color]="'rgba(25,118,210,0.2)'">{{ p.status | titlecase }}</span>
+            <span class="muted">{{ p.updatedAt | date:'short' }}</span>
+          </div>
+        </div>
+        <a routerLink="/create" class="muted">Edit</a>
+      </div>
+    </div>
+  </div>
+</div>

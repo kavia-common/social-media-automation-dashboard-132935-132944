@@ -1,0 +1,30 @@
+<div class="card">
+  <div class="section-title">Connect a new account</div>
+  <div class="form">
+    <label>
+      <span>Platform</span>
+      <select [(ngModel)]="platform">
+        <option *ngFor="let p of platforms" [ngValue]="p.id">{{ p.icon }} {{ p.label }}</option>
+      </select>
+    </label>
+    <label>
+      <span>Username</span>
+      <input type="text" [(ngModel)]="username" placeholder="@yourhandle" />
+    </label>
+    <button class="btn btn-primary" (click)="connect()">Connect</button>
+  </div>
+</div>
+
+<div class="card" style="margin-top: 16px;">
+  <div class="section-title">Connected accounts</div>
+  <div class="list">
+    <div class="item" *ngFor="let a of accounts()">
+      <div class="left">
+        <div class="caption">{{ a.platform | titlecase }} — {{ a.username }}</div>
+        <div class="meta muted">Connected {{ a.connectedAt | date:'short' }}</div>
+      </div>
+      <button class="btn" (click)="disconnect(a.id)">Disconnect</button>
+    </div>
+    <div *ngIf="accounts().length === 0" class="muted">No accounts connected yet.</div>
+  </div>
+</div>

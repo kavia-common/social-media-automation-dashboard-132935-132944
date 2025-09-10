@@ -1,0 +1,11 @@
+.form { display: flex; flex-direction: column; gap: 10px; }
+label { display: flex; flex-direction: column; gap: 6px; }
+textarea, input[type="text"], input[type="datetime-local"] {
+  padding: 10px 12px; border-radius: 10px; border: 1px solid var(--border); resize: vertical;
+}
+.row { display: flex; gap: 10px; }
+.platforms { display: flex; flex-wrap: wrap; gap: 8px; }
+.plat { display: flex; align-items: center; gap: 8px; }
+.image-row { display: grid; grid-template-columns: 1fr auto; gap: 8px; }
+.preview { margin-top: 8px; }
+.preview img { width: 100%; border-radius: 12px; border: 1px solid var(--border); }
