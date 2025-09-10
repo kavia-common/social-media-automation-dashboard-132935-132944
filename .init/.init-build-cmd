@@ -1,0 +1,4 @@
+{
+    "command": "npm install --legacy-peer-deps && npm run build",
+    "working_directory": "/home/kavia/workspace/code-generation/social-media-automation-dashboard-132935-132944/social_media_dashboard_frontend"
+}
